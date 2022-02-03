@@ -1,0 +1,30 @@
+
+<div class="form-control">
+    <!---search functionality-->
+    <input class="form-control" type="text" placeholder="Search text here"[(ngModel)]="filter">
+    {{filter}}
+</div>
+
+<table class="table table-bordered table-striped margin-top">
+    <thead>
+        <tr>
+            <th>MedicineId</th>
+            <th>MedicineName</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let med of this.medicineService.medicines  | filter : filter | paginate : { itemsPerPage :2, currentPage : page}">
+        <td>{{med.MedicineId}}</td>
+        <td>{{med.Name}}</td>
+        <td>{{med.Price}}</td>
+        <td>{{med.Stock}}</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="footer">
+        
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+        
+    </div>
