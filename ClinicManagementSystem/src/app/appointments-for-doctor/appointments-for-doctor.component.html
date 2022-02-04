@@ -8,23 +8,20 @@
                     <th>Token</th>
                     <th>Patinet ID</th>
                     <th>Patient Name</th>
-                    <th>Doctor Name</th>
-                    <th>Date Time</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                    *ngFor="let appointment of receptionistService.appointments | filter:filter| paginate:{itemsPerPage:5,currentPage:page}">
+                    *ngFor="let appointment of doctorService.appointments | filter:filter| paginate:{itemsPerPage:5,currentPage:page}">
 
                     <td>{{appointment.token}}</td>
                     <td>PT0{{appointment.patientId}}</td>
                     <td>{{appointment.firstName + ' ' + appointment.lastName}}</td>
-                    <td>{{appointment.docFirstName + ' ' + appointment.docLastName}}</td>
                     <td>{{appointment.date| date:'yyyy-MM-dd'}}</td>
                     <td>
                         <button class="btn btn-sm btn-primary" (click)="edit(blog.PostId)">Edit</button>
-        
+                        
                     </td>
                 </tr>
             </tbody>
