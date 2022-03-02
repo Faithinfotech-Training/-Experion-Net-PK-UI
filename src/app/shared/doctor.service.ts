@@ -12,17 +12,17 @@ export class DoctorService {
   constructor(private httpClient:HttpClient) { }
 
   getDoctorDetailsById(id):Observable<any>{
-    return this.httpClient.get("https://localhost:44379/api/users/doctors/"+id);
+    return this.httpClient.get("https://localhost:44379/api/doctors/users/"+id);
   }
 
   addDoctor(user:DoctorReg):Observable<any>{
 
-    return this.httpClient.post("https://localhost:44379/api/users/doctor",user);
+    return this.httpClient.post("https://localhost:44379/api/doctors",user);
   }
 
   updDoctor(user:DoctorReg):Observable<any>{
 
-    return this.httpClient.put("https://localhost:44379/api/users/doctors",user);
+    return this.httpClient.put("https://localhost:44379/api/doctors",user);
   }
 
 

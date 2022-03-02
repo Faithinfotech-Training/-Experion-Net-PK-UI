@@ -64,13 +64,27 @@ export class MedicineComponent implements OnInit {
 
   onSubmit(form){
 
-  
-    this.medicineService.addPrescribedMed(form.value,this.router.snapshot.params["appointmentId"]).subscribe(
-      result=>{
-        console.log(result);
-        this.medicineList.push({index:result,name:form.value['medicineName'],doze:form.value.Doze,medId:form.value.MedicineId})
+    let flag=0;
+    for (const iterator of this.medicineList) {
+      if(iterator.medId==form.value.MedicineId)
+      {
+        flag=1;
       }
-    )
+    }
+  
+    if(flag==0)
+    {
+      this.medicineService.addPrescribedMed(form.value,this.router.snapshot.params["appointmentId"]).subscribe(
+        result=>{
+          console.log(result);
+          this.medicineList.push({index:result,name:form.value['medicineName'],doze:form.value.Doze,medId:form.value.MedicineId})
+        }
+      )
+    }
+    else
+    {
+      alert("Already In List..!!");
+    }
     console.log(form.value);
   }
 

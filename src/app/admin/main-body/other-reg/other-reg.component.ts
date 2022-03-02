@@ -71,9 +71,9 @@ export class OtherRegComponent implements OnInit {
       return 0;
     }
 
-    if (this.editUserId == 0) {
-      this.userService.addUsers(form.value).subscribe((result) => {
-        this.toastr.success('Staff Registered...!!!', 'Success');
+    if (this.editUserId != 0) {
+      this.userService.updUsers(form.value).subscribe((result) => {
+        this.toastr.success('Staff Updated ...!!!', 'Success');
         this.route.navigateByUrl('/admin/staff-list');
         console.log(result);
       });
@@ -86,11 +86,11 @@ export class OtherRegComponent implements OnInit {
           this.toastr.error('Username already exist..!!', 'Error');
           return 0;
         } else {
-          this.userService.updUsers(form.value).subscribe((result) => {
-            this.toastr.success('Staff Updated ...!!!', 'Success');
+          this.userService.addUsers(form.value).subscribe((result) => {
+            this.toastr.success('Staff Registered...!!!', 'Success');
             this.route.navigateByUrl('/admin/staff-list');
             console.log(result);
-          });
+          });        
         }
       });
     }

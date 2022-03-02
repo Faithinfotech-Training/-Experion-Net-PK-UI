@@ -30,10 +30,24 @@ export class TestsComponent implements OnInit {
   onSubmit(form){
     let appointId=this.router.snapshot.params["appointmentId"];
     console.log(form.value);
-    this.testService.addToTestReportList(form.value,appointId).subscribe(result=>{
-      console.log(result);
-      this.testList.push({index:result,name:form.value.testName,TestId:form.value.selectedTestId})
-    })
+    let flag=0;
+    for (const iterator of this.testList) {
+
+      if(iterator.TestId==form.value.TestId)
+      {
+        flag=1;
+      }
+    }
+    if(flag==0)
+    {
+      this.testService.addToTestReportList(form.value,appointId).subscribe(result=>{
+        console.log(result);
+        this.testList.push({index:result,name:form.value.testName,TestId:form.value.TestId})
+      })
+    }else
+    {
+      alert("Test Already In List..!!");
+    }
     console.log(form.value);
   }
 
